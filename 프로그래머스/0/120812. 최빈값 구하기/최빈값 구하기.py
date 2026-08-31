@@ -1,20 +1,22 @@
 def solution(array):
-    count = [0] * 1000
-
-    for num in array:
-        count[num] += 1
-
-    max_count = max(count)
-
-    answer = -1
-    same_count = 0
-
-    for i in range(1000):
-        if count[i] == max_count:
-            answer = i
-            same_count += 1
-
-    if same_count > 1:
-        return -1
-
-    return answer
+    scores = [0] * 1001
+    
+    for i in range(0, len(array)):
+        scores[array[i]] = scores[array[i]] + 1
+        
+    max = scores[0]
+    mode = 0
+    
+    if len(array) == 1:
+        return array[0]
+    
+    for i in range(1, len(scores)):
+        if scores[i] > max:
+            max = scores[i]
+            mode = i
+            
+        elif scores[i] == max:
+            mode = -1
+            
+            
+    return mode
